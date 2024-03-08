@@ -9,6 +9,12 @@
 
 using namespace std;
 
+enum
+{
+	LEFT = 0,
+	RIGHT=1
+
+};
 struct Bridge
 {
 	int left;
@@ -67,6 +73,16 @@ void Outer(int left, int right)
 {
 	Run(0, 0, left, right);
 }
+
+uint64_t Factorial(int n)
+{
+
+	if(n==1 || n==0)
+	{
+		return 1;
+	}
+	return n * Factorial(n - 1);
+}
 int main()
 {
 	freopen("input.txt", "r", stdin);
@@ -89,9 +105,22 @@ int main()
 	for(auto node : inputVec)
 	{
 
-		Outer(node.left, node.right);
+		
+		int result = 1;
+		int divide = 1;
+		for(int i= node.right ; i>node.right-node.left; --i)
+		{
+			result *= i;
+			result /= divide++;
+			
+		}
 		cout << result << endl;
-		result = 0;
+
+
+
+		//Outer(node.left, node.right);
+		//cout << result << endl;
+		//result = 0;
 
 	}
 
